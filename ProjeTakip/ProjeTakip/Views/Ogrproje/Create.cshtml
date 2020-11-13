@@ -1,0 +1,63 @@
+﻿@model ProjeTakip.Models.ogrpro
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ogrpro_ogr, "ogrpro_ogr", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ogrpro_ogr", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ogrpro_ogr, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ogrpro_proje, "ogrpro_proje", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ogrpro_proje", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ogrpro_proje, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ogrpro_bolum, "ogrpro_bolum", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ogrpro_bolum", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ogrpro_bolum, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ogrpro_tur, "ogrpro_tur", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ogrpro_tur", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ogrpro_tur, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

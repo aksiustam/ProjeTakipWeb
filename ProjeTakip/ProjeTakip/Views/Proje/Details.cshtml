@@ -1,0 +1,77 @@
+﻿@model ProjeTakip.Models.proje
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/Proje.css" rel="stylesheet" />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.proje_id)
+
+    <div class="form-row ">
+        <div class="col-md-7 ">
+
+            <table class="table table-borderless">
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.proje_isim)</td>
+
+                    <td> @Html.EditorFor(model => model.proje_isim, new { htmlAttributes = new { @class = "form-control input-disable", disabled = "disabled" } })</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.bolum.bolum_ad)</td>
+
+                    <td>
+                        @Html.EditorFor(model => model.bolum.bolum_ad, new { htmlAttributes = new { @class = "form-control input-disable", disabled = "disabled" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.tur.tur_ad)</td>
+
+                    <td>@Html.EditorFor(model => model.tur.tur_ad, new { htmlAttributes = new { @class = "form-control input-disable", disabled = "disabled" } })</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.proje_sayi)</td>
+
+                    <td>@Html.EditorFor(model => model.proje_sayi, new { htmlAttributes = new { @class = "form-control input-disable", disabled = "disabled" } })</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.proje_yil)</td>
+
+                    <td>@Html.EditorFor(model => model.proje_yil, new { htmlAttributes = new { @class = "form-control input-disable", disabled = "disabled" } })</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.proje_mail)</td>
+
+                    <td>@Html.EditorFor(model => model.proje_mail, new { htmlAttributes = new { @class = "form-control input-disable", disabled = "disabled" } })</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.proje_detay)</td>
+
+                    <td>@Html.EditorFor(model => model.proje_detay, new { htmlAttributes = new { @class = "form-control input-disable", disabled = "disabled" } })</td>
+                </tr>
+
+
+            </table>
+        </div>
+    </div>
+
+}
+@if (User.IsInRole("1"))
+{
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.proje_id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+
+}
+
+
+

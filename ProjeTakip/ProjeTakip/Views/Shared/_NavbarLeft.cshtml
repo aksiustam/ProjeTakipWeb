@@ -1,0 +1,135 @@
+﻿        <!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+    <!-- Sidebar - Brand -->
+    <li class="nav-item">
+        <a class="nav-link text-center" href="@Url.Action("Index","Anasayfa")">
+            <img src="~/image/802607selcuk_universitesi_logo.png" style="width: 60%; height: auto;">
+        </a>
+    </li>
+    <!-- Divider -->
+    <li><hr class="sidebar-divider my-0"></li>
+    
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="@Url.Action("Index","Anasayfa")">
+            <i class="fas fa-home"></i>
+            <span>Anasayfa </span>
+        </a>
+    </li>
+    <!-- Divider -->
+    
+    <!-- Heading -->
+
+
+    @if (User.IsInRole("1"))
+    {
+        <li>
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">
+                Alanlar
+            </div>
+        </li>
+        
+    <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-users"></i>
+                <span>Projeler</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Proje İşlemleri:</h6>
+                    <a class="collapse-item" href="@Url.Action("Create","Proje")">Proje Ekle</a>
+                    <a class="collapse-item" href="@Url.Action("Index","Proje")">Projeler</a>
+
+                    <a class="collapse-item" href="@Url.Action("ProjeAta", "Ogrproje")">Proje Ata</a>
+                    <a class="collapse-item" href="@Url.Action("Index","Ogrproje")">Öğrenci Proje</a>
+                    <a class="collapse-item" href="@Url.Action("Alt","Ogrproje")">Öğrenci Alttan</a>
+
+                </div>
+            </div>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#kullanicimeby" aria-expanded="true" aria-controls="kullanicimeby">
+                <i class="fas fa-users"></i>
+                <span>Kullanıcılar</span>
+            </a>
+            <div id="kullanicimeby" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Kullanıcı İşlemleri:</h6>
+                    <a class="collapse-item" href="@Url.Action("Index","Kul")">Tüm Kullanıcılar</a>
+                    <a class="collapse-item" href="@Url.Action("Create","Kul")">Kullanıcı Ekle</a>
+                    <a class="collapse-item" href="@Url.Action("Index","Ogr")">Tüm Öğrenciler</a>
+                    <a class="collapse-item" href="@Url.Action("Create","Ogr")">Öğrenci Ekle</a>
+                </div>
+            </div>
+        </li>
+
+    <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Index","Excel")">
+                <i class="fas fa-file-excel"></i>
+                <span>Excel</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Index","Bolum")">
+                <i class="fas fa-city"></i>
+                <span>Bölümler</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Index","Tur")">
+                <i class="fas fa-clipboard"></i>
+                <span>Türler</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Ayarlar","Anasayfa")">
+                <i class="fas fa-cog"></i>
+                <span>Ayarlar</span>
+            </a>
+        </li>
+
+    }
+    else if (User.IsInRole("0"))
+    {
+        <li>
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">
+                Alanlar
+            </div>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-users"></i>
+                <span>Projeler</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Proje İşlemleri:</h6>
+                    <a class="collapse-item" href="@Url.Action("Create","Proje")">Proje Öner</a>
+                    <a class="collapse-item" href="@Url.Action("Index","Proje")">Projeler</a>
+
+                </div>
+            </div>
+        </li>
+
+    }
+    
+
+
+    <!-- Divider -->
+    <li class="text-center">
+        <hr class="sidebar-divider d-none d-md-block">
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+    </li>
+    
+</ul>
+<!-- End of Sidebar -->

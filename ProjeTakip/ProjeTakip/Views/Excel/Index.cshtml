@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+    @using (Html.BeginForm("Ekle", "Excel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+        <div class="form-inline mb-3">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="control-label col-md-2"></div>
+                    <div class="col-md-5">
+                        <a href="@Url.Action("Ogr","Excel")">
+                            <i class="fas fa-file-excel"></i>
+                            <span>Öğrenci</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-offset-4">
+                <div class="form-group">
+                    <div class="control-label col-md-offset-2">Excel ile ekle:</div>
+                    <div class="col-md-8">
+                        <input type="file" id="FileUpload" name="FileUpload" class="" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-offset-5">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-offset-10">
+                        <button type="submit" name="btn" value="ogrenci" class="btn btn-primary">Upload</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+}
+    @using (Html.BeginForm("Ekle", "Excel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-inline mb-3">
+        <div class="col-md-3">
+            <div class="form-group">
+                <div class="control-label col-md-2"></div>
+                <div class="col-md-5">
+                    <a href="@Url.Action("Kul","Excel")">
+                        <i class="fas fa-file-excel"></i>
+                        <span>Kullanıcı</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-offset-4">
+            <div class="form-group">
+                <div class="control-label col-md-offset-2">Excel ile ekle:</div>
+                <div class="col-md-8">
+                    <input type="file" id="FileUpload" name="FileUpload" class="" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-offset-5">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-offset-10">
+                    <button type="submit" name="btn" value="kullanici" class="btn btn-primary">Upload</button>
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@using (Html.BeginForm("Ekle", "Excel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-inline mb-3">
+        <div class="col-md-3">
+            <div class="form-group">
+                <div class="control-label col-md-2"></div>
+                <div class="col-md-5">
+                    <a href="@Url.Action("Pro","Excel")">
+                        <i class="fas fa-file-excel"></i>
+                        <span>Proje</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-offset-4">
+            <div class="form-group">
+                <div class="control-label col-md-offset-2">Excel ile ekle:</div>
+                <div class="col-md-8">
+                    <input type="file" id="FileUpload" name="FileUpload" class="" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-offset-5">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-offset-10">
+                    <button type="submit" name="btn" value="proje" class="btn btn-primary">Upload</button>
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+}

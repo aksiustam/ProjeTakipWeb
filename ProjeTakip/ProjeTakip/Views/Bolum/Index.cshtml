@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ProjeTakip.Models.bolum>
+
+@{
+    ViewBag.Title = "Bölüm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.bolum_ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bolum_kisa)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.bolum_ad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bolum_kisa)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.bolum_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.bolum_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.bolum_id })
+        </td>
+    </tr>
+}
+
+</table>

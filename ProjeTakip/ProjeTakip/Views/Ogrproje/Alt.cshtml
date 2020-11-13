@@ -1,0 +1,130 @@
+﻿@model IEnumerable<ProjeTakip.Models.ogrpro>
+
+@{
+    ViewBag.Title = "AltProje";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/Content/datatable")
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="table-responsive mt-3">
+    <table class="table table-bordered" id="projetablosu">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ogrpro_id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ogrenci.ogr_isim)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ogrenci.ogr_kul)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.proje.proje_isim)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.bolum.bolum_kisa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tur.tur_kisa)
+                </th>
+
+
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ogrpro_id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ogrenci.ogr_isim)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ogrenci.ogr_kul)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.proje.proje_isim)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.bolum.bolum_kisa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tur.tur_kisa)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ogrpro_id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ogrpro_id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ogrpro_id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ogrpro_id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ogrenci.ogr_isim)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ogrenci.ogr_kul)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.proje.proje_isim)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.bolum.bolum_kisa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tur.tur_kisa)
+                </th>
+
+</tfoot>
+    </table>
+
+</div>
+
+@section Scripts{
+
+    <script>
+
+        $("#projetablosu").DataTable({
+            initComplete: function () {
+                this.api().columns().every(function () {
+                    var column = this;
+                    var select = $('<select><option value=""></option></select>')
+                    .appendTo($(column.footer()).empty())
+                    .on('change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                          $(this).val()
+                          );
+
+                        column
+                        .search(val ? '^' + val + '$' : '', true, false)
+                        .draw();
+                    });
+
+                    column.data().unique().sort().each(function (d, j) {
+                        select.append('<option value="' + d + '">' + d + '</option>')
+                    });
+                });
+            }
+        });
+    </script>
+
+}
+@Scripts.Render("~/bundles/datatable")

@@ -1,0 +1,110 @@
+﻿@model ProjeTakip.Models.proje
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.proje_isim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.proje_isim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.proje_sayi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.proje_sayi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.proje_yil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.proje_yil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.proje_mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.proje_mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.proje_data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.proje_data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.proje_ata)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.proje_ata)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.proje_resim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.proje_resim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.proje_detay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.proje_detay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.proje_arsiv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.proje_arsiv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bolum.bolum_ad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bolum.bolum_ad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tur.tur_ad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tur.tur_ad)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,83 @@
+﻿@model ProjeTakip.Models.ogrenci
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ogrenci</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ogr_isim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ogr_isim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ogr_kul)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ogr_kul)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ogr_sifre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ogr_sifre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ogr_mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ogr_mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ogr_yetki)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ogr_yetki)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ogr_yil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ogr_yil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ogr_arsiv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ogr_arsiv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ogr_alt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ogr_alt)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ogr_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

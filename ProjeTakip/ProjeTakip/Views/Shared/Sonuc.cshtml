@@ -1,0 +1,17 @@
+﻿@model List<String>
+@{
+    ViewBag.Title = "Sonuc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@foreach (var item in Model)
+{
+    <dl class="dl-horizontal">
+        <dd>
+            @item
+        </dd>
+</dl>
+
+
+}

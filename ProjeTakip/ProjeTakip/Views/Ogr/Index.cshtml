@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ProjeTakip.Models.ogrenci>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ogr_isim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ogr_kul)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ogr_sifre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ogr_mail)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ogr_yil)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ogr_isim)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ogr_kul)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ogr_sifre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ogr_mail)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.ogr_yil)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ogr_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ogr_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ogr_id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,92 @@
+﻿@model ProjeTakip.Models.ogrenci
+
+@{
+    ViewBag.Title = "Ogr";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ogr_isim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ogr_isim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ogr_kul)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ogr_kul)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ogr_sifre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ogr_sifre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ogr_mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ogr_mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ogr_yetki)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ogr_yetki)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ogr_yil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ogr_yil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ogr_arsiv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ogr_arsiv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ogr_alt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ogr_alt)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("ForgotOgrPassword", "Profil", FormMethod.Post))
+    {
+        <div class="form-group">
+            <div class="text-success">
+                @ViewBag.Message
+            </div>
+            <div class="col-md-offset-2 col-md-10">
+                @Html.HiddenFor(a => a.ogr_kul)
+
+                <input type="submit" value="Pass-Reset" class="btn btn-default" />
+            </div>
+        </div>
+    }
+
+</div>

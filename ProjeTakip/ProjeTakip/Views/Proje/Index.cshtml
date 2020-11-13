@@ -1,0 +1,156 @@
+﻿@model IEnumerable<ProjeTakip.Models.proje>
+
+@{
+    ViewBag.Title = "Proje";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/Content/datatable")
+
+@if (User.IsInRole("1"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+}
+
+
+
+
+<div class="table-responsive mt-3">
+        <table class="table table-bordered table-light"  id="projetablosu">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.proje_id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.proje_isim)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.bolum.bolum_kisa)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.tur.tur_kisa)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.proje_sayi)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.proje_yil)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.proje_mail)
+                    </th>
+
+
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.proje_id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.proje_isim)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.bolum.bolum_kisa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tur.tur_kisa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.proje_sayi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.proje_yil)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.proje_mail)
+                        </td>
+                        @if (User.IsInRole("1"))
+                        {
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.proje_id }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.proje_id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.proje_id })
+                            </td>
+
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.ActionLink("Details", "Details", new { id = item.proje_id })
+                            </td>
+                        }
+
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.proje_id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.proje_isim)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.bolum.bolum_kisa)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.tur.tur_kisa)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.proje_sayi)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.proje_yil)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.proje_mail)
+                    </th>
+
+</tfoot>
+    </table>
+
+</div>
+
+@section Scripts{
+
+    <script>
+
+        $("#projetablosu").DataTable({
+            initComplete: function () {
+                this.api().columns().every(function () {
+                    var column = this;
+                    var select = $('<select><option value=""></option></select>')
+                    .appendTo($(column.footer()).empty())
+                    .on('change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                          $(this).val()
+                          );
+
+                        column
+                        .search(val ? '^' + val + '$' : '', true, false)
+                        .draw();
+                    });
+
+                    column.data().unique().sort().each(function (d, j) {
+                        select.append('<option value="' + d + '">' + d + '</option>')
+                    });
+                });
+            }
+        });
+    </script>
+
+}
+    @Scripts.Render("~/bundles/datatable")

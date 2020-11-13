@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ProjeTakip.Models.tur>
+
+@{
+    ViewBag.Title = "Dersler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tur_ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tur_kisa)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tur_ad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tur_kisa)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.tur_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.tur_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.tur_id })
+        </td>
+    </tr>
+}
+
+</table>

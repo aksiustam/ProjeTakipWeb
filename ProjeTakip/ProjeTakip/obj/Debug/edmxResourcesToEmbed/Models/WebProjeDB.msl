@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WebProjeDBModelStoreContainer" CdmEntityContainer="WebProjeDBEntities1">
+    <EntitySetMapping Name="ayarlars">
+      <EntityTypeMapping TypeName="WebProjeDBModel.ayarlar">
+        <MappingFragment StoreEntitySet="ayarlar">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="site_logo" ColumnName="site_logo" />
+          <ScalarProperty Name="site_baslik" ColumnName="site_baslik" />
+          <ScalarProperty Name="site_aciklama" ColumnName="site_aciklama" />
+          <ScalarProperty Name="site_link" ColumnName="site_link" />
+          <ScalarProperty Name="site_sahip_mail" ColumnName="site_sahip_mail" />
+          <ScalarProperty Name="site_mail_host" ColumnName="site_mail_host" />
+          <ScalarProperty Name="site_mail_mail" ColumnName="site_mail_mail" />
+          <ScalarProperty Name="site_mail_port" ColumnName="site_mail_port" />
+          <ScalarProperty Name="site_mail_sifre" ColumnName="site_mail_sifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bolums">
+      <EntityTypeMapping TypeName="WebProjeDBModel.bolum">
+        <MappingFragment StoreEntitySet="bolum">
+          <ScalarProperty Name="bolum_id" ColumnName="bolum_id" />
+          <ScalarProperty Name="bolum_ad" ColumnName="bolum_ad" />
+          <ScalarProperty Name="bolum_kisa" ColumnName="bolum_kisa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kullanicis">
+      <EntityTypeMapping TypeName="WebProjeDBModel.kullanici">
+        <MappingFragment StoreEntitySet="kullanici">
+          <ScalarProperty Name="kul_id" ColumnName="kul_id" />
+          <ScalarProperty Name="kul_isim" ColumnName="kul_isim" />
+          <ScalarProperty Name="kul_mail" ColumnName="kul_mail" />
+          <ScalarProperty Name="kul_sifre" ColumnName="kul_sifre" />
+          <ScalarProperty Name="kul_telefon" ColumnName="kul_telefon" />
+          <ScalarProperty Name="kul_yetki" ColumnName="kul_yetki" />
+          <ScalarProperty Name="kul_Code" ColumnName="kul_Code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ogrencis">
+      <EntityTypeMapping TypeName="WebProjeDBModel.ogrenci">
+        <MappingFragment StoreEntitySet="ogrenci">
+          <ScalarProperty Name="ogr_id" ColumnName="ogr_id" />
+          <ScalarProperty Name="ogr_isim" ColumnName="ogr_isim" />
+          <ScalarProperty Name="ogr_kul" ColumnName="ogr_kul" />
+          <ScalarProperty Name="ogr_sifre" ColumnName="ogr_sifre" />
+          <ScalarProperty Name="ogr_mail" ColumnName="ogr_mail" />
+          <ScalarProperty Name="ogr_yetki" ColumnName="ogr_yetki" />
+          <ScalarProperty Name="ogr_yil" ColumnName="ogr_yil" />
+          <ScalarProperty Name="ogr_arsiv" ColumnName="ogr_arsiv" />
+          <ScalarProperty Name="ogr_alt" ColumnName="ogr_alt" />
+          <ScalarProperty Name="ogr_code" ColumnName="ogr_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ogrproes">
+      <EntityTypeMapping TypeName="WebProjeDBModel.ogrpro">
+        <MappingFragment StoreEntitySet="ogrpro">
+          <ScalarProperty Name="ogrpro_id" ColumnName="ogrpro_id" />
+          <ScalarProperty Name="ogrpro_ogr" ColumnName="ogrpro_ogr" />
+          <ScalarProperty Name="ogrpro_proje" ColumnName="ogrpro_proje" />
+          <ScalarProperty Name="ogrpro_bolum" ColumnName="ogrpro_bolum" />
+          <ScalarProperty Name="ogrpro_tur" ColumnName="ogrpro_tur" />
+          <ScalarProperty Name="ogrpro_data" ColumnName="ogrpro_data" />
+          <ScalarProperty Name="ogrpro_resim" ColumnName="ogrpro_resim" />
+          <ScalarProperty Name="ogrpro_arsiv" ColumnName="ogrpro_arsiv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projes">
+      <EntityTypeMapping TypeName="WebProjeDBModel.proje">
+        <MappingFragment StoreEntitySet="proje">
+          <ScalarProperty Name="proje_id" ColumnName="proje_id" />
+          <ScalarProperty Name="proje_isim" ColumnName="proje_isim" />
+          <ScalarProperty Name="proje_bolum" ColumnName="proje_bolum" />
+          <ScalarProperty Name="proje_tur" ColumnName="proje_tur" />
+          <ScalarProperty Name="proje_sayi" ColumnName="proje_sayi" />
+          <ScalarProperty Name="proje_yil" ColumnName="proje_yil" />
+          <ScalarProperty Name="proje_mail" ColumnName="proje_mail" />
+          <ScalarProperty Name="proje_data" ColumnName="proje_data" />
+          <ScalarProperty Name="proje_ata" ColumnName="proje_ata" />
+          <ScalarProperty Name="proje_resim" ColumnName="proje_resim" />
+          <ScalarProperty Name="proje_detay" ColumnName="proje_detay" />
+          <ScalarProperty Name="proje_arsiv" ColumnName="proje_arsiv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="turs">
+      <EntityTypeMapping TypeName="WebProjeDBModel.tur">
+        <MappingFragment StoreEntitySet="tur">
+          <ScalarProperty Name="tur_id" ColumnName="tur_id" />
+          <ScalarProperty Name="tur_ad" ColumnName="tur_ad" />
+          <ScalarProperty Name="tur_kisa" ColumnName="tur_kisa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c86481141ebe46d897357f310517bafd" Name="Diagram1">
+        <EntityTypeShape EntityType="WebProjeDBModel.ayarlar" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebProjeDBModel.bolum" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebProjeDBModel.kullanici" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebProjeDBModel.ogrenci" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebProjeDBModel.ogrpro" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebProjeDBModel.proje" Width="1.5" PointX="6" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebProjeDBModel.tur" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="WebProjeDBModel.FK_ogrpro_bolum" ManuallyRouted="false" />
+        <AssociationConnector Association="WebProjeDBModel.FK_proje_bolum" ManuallyRouted="false" />
+        <AssociationConnector Association="WebProjeDBModel.FK_ogrpro_ogrenci" ManuallyRouted="false" />
+        <AssociationConnector Association="WebProjeDBModel.FK_ogrpro_proje" ManuallyRouted="false" />
+        <AssociationConnector Association="WebProjeDBModel.FK_ogrpro_tur" ManuallyRouted="false" />
+        <AssociationConnector Association="WebProjeDBModel.FK_proje_tur" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

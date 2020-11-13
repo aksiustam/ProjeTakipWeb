@@ -1,0 +1,200 @@
+﻿@model ProjeTakip.Controllers.ProfilController.ProfilModel
+
+@{
+    ViewBag.Title = "Kul";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .hidden_div { display:none }
+
+
+</style>
+<div >
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.kul.kul_isim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kul.kul_isim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kul.kul_mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kul.kul_mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kul.kul_telefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kul.kul_telefon)
+        </dd>
+
+    </dl>
+    
+
+    @using (Html.BeginForm("ForgotPassword", "Profil", FormMethod.Post))
+    {
+        <div class="form-group">
+            <div class="text-success">
+                @ViewBag.Message
+            </div>
+            <div class="col-md-offset-2 col-md-10">
+                @Html.HiddenFor(a => a.kul.kul_mail)
+                
+                <input type="submit" value="Pass-Reset" class="btn btn-default btn-outline-primary" />
+            </div>
+        </div>
+    }
+
+    <fieldset class="question">
+        <label for="question">Projeleri göster</label>
+        <input id="question" type="checkbox" name="question" value="1" class="checkbox-inline" />
+    </fieldset>
+
+    <div  class="hidden_div">
+
+        @Styles.Render("~/Content/datatable")
+
+        <div class="table-responsive mt-3">
+            <table class="table table-bordered table-light" id="projetablosu">
+                <thead>
+                    <tr>
+                        <th>
+                            Ad
+                        </th>
+                        <th>
+                            No
+                        </th>
+                        <th>
+                            Mail
+                        </th>
+
+                        <th>
+                            Proje
+                        </th>
+                        <th>
+                            Tür
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.list)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ogrenci.ogr_isim)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ogrenci.ogr_kul)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ogrenci.ogr_mail)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.proje.proje_isim)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tur.tur_kisa)
+                            </td>
+
+                            @if (User.IsInRole("1"))
+                            {
+                                <td>
+
+                                    @Html.ActionLink("Edit", "Edit", "Proje", new { id = item.proje.proje_id }, null) |
+                                    @Html.ActionLink("Details", "Details", "Proje", new { id = item.proje.proje_id }, null) |
+                                    @Html.ActionLink("Delete", "Delete", "Proje", new { id = item.proje.proje_id }, null)
+                                </td>
+
+                            }
+                            else
+                            {
+                                <td>
+                                    @Html.ActionLink("Details", "Details", "Proje", new { id = item.proje.proje_id }, null)
+                                </td>
+                            }
+
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>
+                            Ad
+                        </th>
+                        <th>
+                            No
+                        </th>
+                        <th>
+                            Mail
+                        </th>
+
+                        <th>
+                            Proje
+                        </th>
+                        <th>
+                            Tür
+                        </th>
+
+                </tfoot>
+            </table>
+
+        </div>
+
+        @section Scripts{
+
+            <script>
+
+                $("#projetablosu").DataTable({
+                    initComplete: function () {
+                        this.api().columns().every(function () {
+                            var column = this;
+                            var select = $('<select><option value=""></option></select>')
+                            .appendTo($(column.footer()).empty())
+                            .on('change', function () {
+                                var val = $.fn.dataTable.util.escapeRegex(
+                                  $(this).val()
+                                  );
+
+                                column
+                                .search(val ? '^' + val + '$' : '', true, false)
+                                .draw();
+                            });
+
+                            column.data().unique().sort().each(function (d, j) {
+                                select.append('<option value="' + d + '">' + d + '</option>')
+                            });
+                        });
+                    }
+                });
+
+
+                $(function () {
+                    $("#question").on("click", function () {
+                        $(".hidden_div").toggle(this.checked);
+                    });
+                });
+            </script>
+        }
+        @Scripts.Render("~/bundles/datatable")
+
+
+
+
+
+
+
+
+    </div>
+
+
+</div>

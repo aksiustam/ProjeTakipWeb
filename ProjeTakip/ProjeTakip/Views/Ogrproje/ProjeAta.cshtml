@@ -1,0 +1,167 @@
+﻿@model ProjeTakip.Models.ProjeAtaList
+@{
+    ViewBag.Title = "ProjeAta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/Content/datatable")
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    
+    <div class="row justify-content-md-center">
+        <div class="col col-md-5 ">
+            <div class="table-responsive mt-3">
+                <table class="table table-bordered table-light table-sm " id="Ogrtablosu">
+                    <thead>
+                        <tr>
+                            <th>Ad</th>
+                            <th> No</th>
+                            <th>Checked</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Ogr.Count; i++)
+                        {
+                            <tr>
+                                @Html.HiddenFor(x => Model.Ogr[i].ogrid)
+                                <td>
+                                    @Html.DisplayFor(it => Model.Ogr[i].ogrAd)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(it => Model.Ogr[i].ogrNo)
+                                </td>
+                                <td class="text-sm-center">
+                                    @Html.CheckBoxFor(it => Model.Ogr[i].OgrSelect, new { @checked = false, @class = "form-control" })
+                                </td>
+                            </tr>
+                        }          
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Ad</th>
+                            <th>No</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="col col-md-7 ">
+            <div class="table-responsive mt-3">
+                <table class="table table-bordered table-light table-sm" id="Protablosu">
+                    <thead>
+                        <tr>
+                            <th>Ad</th>
+                            <th>Bolum</th>
+                            <th>Tur</th>
+                            <th>Checked</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Pro.Count; i++)
+                        {
+                            <tr>
+                                    @Html.HiddenFor(x => Model.Pro[i].Proid)
+                                <td>
+
+                                    @Html.DisplayFor(it => Model.Pro[i].ProAd)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(it => Model.Pro[i].ProBol)
+                                </td>
+                                <td>
+
+                                    @Html.DisplayFor(it => Model.Pro[i].ProTur)
+                                </td>
+                                <td class="text-sm-center">
+                                    @Html.RadioButtonFor(it => Model.Proid,Model.Pro[i].Proid, new { @class = "form-control checkbox" })   
+                                </td>
+                            </tr>
+                        }
+                        
+                    </tbody>
+                    <tfoot>
+                        <tr>      
+                            <th>Ad</th>
+                            <th>Bolum</th>
+                            <th>Tur</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-2">
+            <input type="submit" value="Sumbit" class="btn btn-dark btn-user btn-block" />
+        </div>
+    </div>
+    <label class="control-label text-danger">@Html.DisplayFor(model => model.error)</label>
+}
+
+@section Scripts{
+
+    <script>
+        $("#Ogrtablosu").DataTable({
+            initComplete: function () {
+                this.api().columns().every(function () {
+                    var column = this;
+                    var select = $('<select><option value=""></option></select>')
+                    .appendTo($(column.footer()).empty())
+                    .on('change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                          $(this).val()
+                          );
+
+                        column
+                        .search(val ? '^' + val + '$' : '', true, false)
+                        .draw();
+                    });
+                    column.data().unique().sort().each(function (d, j) {
+                        select.append('<option value="' + d + '">' + d + '</option>')
+                    });
+                });
+            }
+        });
+       
+    </script>
+    <script>
+        $("#Protablosu").DataTable({
+            initComplete: function () {
+                this.api().columns().every(function () {
+                    var column = this;
+                    var select = $('<select><option value=""></option></select>')
+                    .appendTo($(column.footer()).empty())
+                    .on('change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                          $(this).val()
+                          );
+
+                        column
+                        .search(val ? '^' + val + '$' : '', true, false)
+                        .draw();
+                    });
+                    column.data().unique().sort().each(function (d, j) {
+                        select.append('<option value="' + d + '">' + d + '</option>')
+                    });
+                });
+            }
+        });
+        
+        $(function () {
+            $("#input").change(function (e) {
+                e.preventDefault();
+                if ($(this).is(":checked")) {
+                    $("#input").prop("checked", false);
+                    $(this).prop("checked", true);
+                }
+            });
+        });
+
+    </script>
+    
+}
+@Scripts.Render("~/bundles/datatable")

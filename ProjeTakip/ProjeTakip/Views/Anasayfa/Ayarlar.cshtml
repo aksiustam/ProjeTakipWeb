@@ -1,0 +1,90 @@
+﻿@model ProjeTakip.Models.ayarlar
+
+@{
+    ViewBag.Title = "Ayarlar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.site_logo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.site_logo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.site_baslik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.site_baslik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.site_aciklama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.site_aciklama)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.site_link)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.site_link)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.site_sahip_mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.site_sahip_mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.site_mail_host)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.site_mail_host)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.site_mail_mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.site_mail_mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.site_mail_port)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.site_mail_port)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.site_mail_sifre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.site_mail_sifre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "AyarEdit", new { id = Model.id }) |
+    @Html.ActionLink("Back to Home", "Index")
+</p>

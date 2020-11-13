@@ -1,0 +1,535 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WebProjeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ayarlar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="site_logo" Type="nvarchar" MaxLength="400" />
+          <Property Name="site_baslik" Type="nvarchar" MaxLength="50" />
+          <Property Name="site_aciklama" Type="nvarchar" MaxLength="50" />
+          <Property Name="site_link" Type="nvarchar" MaxLength="50" />
+          <Property Name="site_sahip_mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="site_mail_host" Type="nvarchar" MaxLength="50" />
+          <Property Name="site_mail_mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="site_mail_port" Type="int" />
+          <Property Name="site_mail_sifre" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="bolum">
+          <Key>
+            <PropertyRef Name="bolum_id" />
+          </Key>
+          <Property Name="bolum_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bolum_ad" Type="nvarchar" MaxLength="50" />
+          <Property Name="bolum_kisa" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="kullanici">
+          <Key>
+            <PropertyRef Name="kul_id" />
+          </Key>
+          <Property Name="kul_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kul_isim" Type="nvarchar" MaxLength="100" />
+          <Property Name="kul_mail" Type="nvarchar" MaxLength="100" />
+          <Property Name="kul_sifre" Type="nvarchar" MaxLength="100" />
+          <Property Name="kul_telefon" Type="nvarchar" MaxLength="50" />
+          <Property Name="kul_yetki" Type="int" />
+          <Property Name="kul_Code" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ogrenci">
+          <Key>
+            <PropertyRef Name="ogr_id" />
+          </Key>
+          <Property Name="ogr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ogr_isim" Type="nvarchar" MaxLength="100" />
+          <Property Name="ogr_kul" Type="nvarchar" MaxLength="100" />
+          <Property Name="ogr_sifre" Type="nvarchar" MaxLength="100" />
+          <Property Name="ogr_mail" Type="nvarchar" MaxLength="100" />
+          <Property Name="ogr_yetki" Type="int" />
+          <Property Name="ogr_yil" Type="nvarchar" MaxLength="50" />
+          <Property Name="ogr_arsiv" Type="int" />
+          <Property Name="ogr_alt" Type="int" />
+          <Property Name="ogr_code" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ogrpro">
+          <Key>
+            <PropertyRef Name="ogrpro_id" />
+          </Key>
+          <Property Name="ogrpro_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ogrpro_ogr" Type="int" />
+          <Property Name="ogrpro_proje" Type="int" />
+          <Property Name="ogrpro_bolum" Type="int" />
+          <Property Name="ogrpro_tur" Type="int" />
+          <Property Name="ogrpro_data" Type="int" />
+          <Property Name="ogrpro_resim" Type="int" />
+          <Property Name="ogrpro_arsiv" Type="int" />
+        </EntityType>
+        <EntityType Name="proje">
+          <Key>
+            <PropertyRef Name="proje_id" />
+          </Key>
+          <Property Name="proje_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="proje_isim" Type="nvarchar" MaxLength="100" />
+          <Property Name="proje_bolum" Type="int" />
+          <Property Name="proje_tur" Type="int" />
+          <Property Name="proje_sayi" Type="nvarchar" MaxLength="50" />
+          <Property Name="proje_yil" Type="nvarchar" MaxLength="50" />
+          <Property Name="proje_mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="proje_data" Type="int" />
+          <Property Name="proje_ata" Type="int" />
+          <Property Name="proje_resim" Type="int" />
+          <Property Name="proje_detay" Type="text" />
+          <Property Name="proje_arsiv" Type="int" />
+        </EntityType>
+        <EntityType Name="tur">
+          <Key>
+            <PropertyRef Name="tur_id" />
+          </Key>
+          <Property Name="tur_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tur_ad" Type="nvarchar" MaxLength="50" />
+          <Property Name="tur_kisa" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_ogrpro_bolum">
+          <End Role="bolum" Type="Self.bolum" Multiplicity="0..1" />
+          <End Role="ogrpro" Type="Self.ogrpro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bolum">
+              <PropertyRef Name="bolum_id" />
+            </Principal>
+            <Dependent Role="ogrpro">
+              <PropertyRef Name="ogrpro_bolum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ogrpro_ogrenci">
+          <End Role="ogrenci" Type="Self.ogrenci" Multiplicity="0..1" />
+          <End Role="ogrpro" Type="Self.ogrpro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ogrenci">
+              <PropertyRef Name="ogr_id" />
+            </Principal>
+            <Dependent Role="ogrpro">
+              <PropertyRef Name="ogrpro_ogr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ogrpro_proje">
+          <End Role="proje" Type="Self.proje" Multiplicity="0..1" />
+          <End Role="ogrpro" Type="Self.ogrpro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proje">
+              <PropertyRef Name="proje_id" />
+            </Principal>
+            <Dependent Role="ogrpro">
+              <PropertyRef Name="ogrpro_proje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ogrpro_tur">
+          <End Role="tur" Type="Self.tur" Multiplicity="0..1" />
+          <End Role="ogrpro" Type="Self.ogrpro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tur">
+              <PropertyRef Name="tur_id" />
+            </Principal>
+            <Dependent Role="ogrpro">
+              <PropertyRef Name="ogrpro_tur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_proje_bolum">
+          <End Role="bolum" Type="Self.bolum" Multiplicity="0..1" />
+          <End Role="proje" Type="Self.proje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bolum">
+              <PropertyRef Name="bolum_id" />
+            </Principal>
+            <Dependent Role="proje">
+              <PropertyRef Name="proje_bolum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_proje_tur">
+          <End Role="tur" Type="Self.tur" Multiplicity="0..1" />
+          <End Role="proje" Type="Self.proje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tur">
+              <PropertyRef Name="tur_id" />
+            </Principal>
+            <Dependent Role="proje">
+              <PropertyRef Name="proje_tur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WebProjeDBModelStoreContainer">
+          <EntitySet Name="ayarlar" EntityType="Self.ayarlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bolum" EntityType="Self.bolum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kullanici" EntityType="Self.kullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ogrenci" EntityType="Self.ogrenci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ogrpro" EntityType="Self.ogrpro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="proje" EntityType="Self.proje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tur" EntityType="Self.tur" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ogrpro_bolum" Association="Self.FK_ogrpro_bolum">
+            <End Role="bolum" EntitySet="bolum" />
+            <End Role="ogrpro" EntitySet="ogrpro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ogrpro_ogrenci" Association="Self.FK_ogrpro_ogrenci">
+            <End Role="ogrenci" EntitySet="ogrenci" />
+            <End Role="ogrpro" EntitySet="ogrpro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ogrpro_proje" Association="Self.FK_ogrpro_proje">
+            <End Role="proje" EntitySet="proje" />
+            <End Role="ogrpro" EntitySet="ogrpro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ogrpro_tur" Association="Self.FK_ogrpro_tur">
+            <End Role="tur" EntitySet="tur" />
+            <End Role="ogrpro" EntitySet="ogrpro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_proje_bolum" Association="Self.FK_proje_bolum">
+            <End Role="bolum" EntitySet="bolum" />
+            <End Role="proje" EntitySet="proje" />
+          </AssociationSet>
+          <AssociationSet Name="FK_proje_tur" Association="Self.FK_proje_tur">
+            <End Role="tur" EntitySet="tur" />
+            <End Role="proje" EntitySet="proje" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebProjeDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ayarlar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="site_logo" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="site_baslik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="site_aciklama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="site_link" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="site_sahip_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="site_mail_host" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="site_mail_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="site_mail_port" Type="Int32" />
+          <Property Name="site_mail_sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="bolum">
+          <Key>
+            <PropertyRef Name="bolum_id" />
+          </Key>
+          <Property Name="bolum_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bolum_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="bolum_kisa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ogrproes" Relationship="Self.FK_ogrpro_bolum" FromRole="bolum" ToRole="ogrpro" />
+          <NavigationProperty Name="projes" Relationship="Self.FK_proje_bolum" FromRole="bolum" ToRole="proje" />
+        </EntityType>
+        <EntityType Name="kullanici">
+          <Key>
+            <PropertyRef Name="kul_id" />
+          </Key>
+          <Property Name="kul_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kul_isim" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="kul_mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="kul_sifre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="kul_telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kul_yetki" Type="Int32" />
+          <Property Name="kul_Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ogrenci">
+          <Key>
+            <PropertyRef Name="ogr_id" />
+          </Key>
+          <Property Name="ogr_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ogr_isim" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ogr_kul" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ogr_sifre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ogr_mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ogr_yetki" Type="Int32" />
+          <Property Name="ogr_yil" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ogr_arsiv" Type="Int32" />
+          <Property Name="ogr_alt" Type="Int32" />
+          <Property Name="ogr_code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ogrproes" Relationship="Self.FK_ogrpro_ogrenci" FromRole="ogrenci" ToRole="ogrpro" />
+        </EntityType>
+        <EntityType Name="ogrpro">
+          <Key>
+            <PropertyRef Name="ogrpro_id" />
+          </Key>
+          <Property Name="ogrpro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ogrpro_ogr" Type="Int32" />
+          <Property Name="ogrpro_proje" Type="Int32" />
+          <Property Name="ogrpro_bolum" Type="Int32" />
+          <Property Name="ogrpro_tur" Type="Int32" />
+          <Property Name="ogrpro_data" Type="Int32" />
+          <Property Name="ogrpro_resim" Type="Int32" />
+          <Property Name="ogrpro_arsiv" Type="Int32" />
+          <NavigationProperty Name="bolum" Relationship="Self.FK_ogrpro_bolum" FromRole="ogrpro" ToRole="bolum" />
+          <NavigationProperty Name="ogrenci" Relationship="Self.FK_ogrpro_ogrenci" FromRole="ogrpro" ToRole="ogrenci" />
+          <NavigationProperty Name="proje" Relationship="Self.FK_ogrpro_proje" FromRole="ogrpro" ToRole="proje" />
+          <NavigationProperty Name="tur" Relationship="Self.FK_ogrpro_tur" FromRole="ogrpro" ToRole="tur" />
+        </EntityType>
+        <EntityType Name="proje">
+          <Key>
+            <PropertyRef Name="proje_id" />
+          </Key>
+          <Property Name="proje_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="proje_isim" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="proje_bolum" Type="Int32" />
+          <Property Name="proje_tur" Type="Int32" />
+          <Property Name="proje_sayi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="proje_yil" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="proje_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="proje_data" Type="Int32" />
+          <Property Name="proje_ata" Type="Int32" />
+          <Property Name="proje_resim" Type="Int32" />
+          <Property Name="proje_detay" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="proje_arsiv" Type="Int32" />
+          <NavigationProperty Name="bolum" Relationship="Self.FK_proje_bolum" FromRole="proje" ToRole="bolum" />
+          <NavigationProperty Name="ogrproes" Relationship="Self.FK_ogrpro_proje" FromRole="proje" ToRole="ogrpro" />
+          <NavigationProperty Name="tur" Relationship="Self.FK_proje_tur" FromRole="proje" ToRole="tur" />
+        </EntityType>
+        <EntityType Name="tur">
+          <Key>
+            <PropertyRef Name="tur_id" />
+          </Key>
+          <Property Name="tur_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tur_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tur_kisa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ogrproes" Relationship="Self.FK_ogrpro_tur" FromRole="tur" ToRole="ogrpro" />
+          <NavigationProperty Name="projes" Relationship="Self.FK_proje_tur" FromRole="tur" ToRole="proje" />
+        </EntityType>
+        <Association Name="FK_ogrpro_bolum">
+          <End Role="bolum" Type="Self.bolum" Multiplicity="0..1" />
+          <End Role="ogrpro" Type="Self.ogrpro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bolum">
+              <PropertyRef Name="bolum_id" />
+            </Principal>
+            <Dependent Role="ogrpro">
+              <PropertyRef Name="ogrpro_bolum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_proje_bolum">
+          <End Role="bolum" Type="Self.bolum" Multiplicity="0..1" />
+          <End Role="proje" Type="Self.proje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bolum">
+              <PropertyRef Name="bolum_id" />
+            </Principal>
+            <Dependent Role="proje">
+              <PropertyRef Name="proje_bolum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ogrpro_ogrenci">
+          <End Role="ogrenci" Type="Self.ogrenci" Multiplicity="0..1" />
+          <End Role="ogrpro" Type="Self.ogrpro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ogrenci">
+              <PropertyRef Name="ogr_id" />
+            </Principal>
+            <Dependent Role="ogrpro">
+              <PropertyRef Name="ogrpro_ogr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ogrpro_proje">
+          <End Role="proje" Type="Self.proje" Multiplicity="0..1" />
+          <End Role="ogrpro" Type="Self.ogrpro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proje">
+              <PropertyRef Name="proje_id" />
+            </Principal>
+            <Dependent Role="ogrpro">
+              <PropertyRef Name="ogrpro_proje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ogrpro_tur">
+          <End Role="tur" Type="Self.tur" Multiplicity="0..1" />
+          <End Role="ogrpro" Type="Self.ogrpro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tur">
+              <PropertyRef Name="tur_id" />
+            </Principal>
+            <Dependent Role="ogrpro">
+              <PropertyRef Name="ogrpro_tur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_proje_tur">
+          <End Role="tur" Type="Self.tur" Multiplicity="0..1" />
+          <End Role="proje" Type="Self.proje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tur">
+              <PropertyRef Name="tur_id" />
+            </Principal>
+            <Dependent Role="proje">
+              <PropertyRef Name="proje_tur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WebProjeDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ayarlars" EntityType="Self.ayarlar" />
+          <EntitySet Name="bolums" EntityType="Self.bolum" />
+          <EntitySet Name="kullanicis" EntityType="Self.kullanici" />
+          <EntitySet Name="ogrencis" EntityType="Self.ogrenci" />
+          <EntitySet Name="ogrproes" EntityType="Self.ogrpro" />
+          <EntitySet Name="projes" EntityType="Self.proje" />
+          <EntitySet Name="turs" EntityType="Self.tur" />
+          <AssociationSet Name="FK_ogrpro_bolum" Association="Self.FK_ogrpro_bolum">
+            <End Role="bolum" EntitySet="bolums" />
+            <End Role="ogrpro" EntitySet="ogrproes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_proje_bolum" Association="Self.FK_proje_bolum">
+            <End Role="bolum" EntitySet="bolums" />
+            <End Role="proje" EntitySet="projes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ogrpro_ogrenci" Association="Self.FK_ogrpro_ogrenci">
+            <End Role="ogrenci" EntitySet="ogrencis" />
+            <End Role="ogrpro" EntitySet="ogrproes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ogrpro_proje" Association="Self.FK_ogrpro_proje">
+            <End Role="proje" EntitySet="projes" />
+            <End Role="ogrpro" EntitySet="ogrproes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ogrpro_tur" Association="Self.FK_ogrpro_tur">
+            <End Role="tur" EntitySet="turs" />
+            <End Role="ogrpro" EntitySet="ogrproes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_proje_tur" Association="Self.FK_proje_tur">
+            <End Role="tur" EntitySet="turs" />
+            <End Role="proje" EntitySet="projes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WebProjeDBModelStoreContainer" CdmEntityContainer="WebProjeDBEntities">
+          <EntitySetMapping Name="ayarlars">
+            <EntityTypeMapping TypeName="WebProjeDBModel.ayarlar">
+              <MappingFragment StoreEntitySet="ayarlar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="site_logo" ColumnName="site_logo" />
+                <ScalarProperty Name="site_baslik" ColumnName="site_baslik" />
+                <ScalarProperty Name="site_aciklama" ColumnName="site_aciklama" />
+                <ScalarProperty Name="site_link" ColumnName="site_link" />
+                <ScalarProperty Name="site_sahip_mail" ColumnName="site_sahip_mail" />
+                <ScalarProperty Name="site_mail_host" ColumnName="site_mail_host" />
+                <ScalarProperty Name="site_mail_mail" ColumnName="site_mail_mail" />
+                <ScalarProperty Name="site_mail_port" ColumnName="site_mail_port" />
+                <ScalarProperty Name="site_mail_sifre" ColumnName="site_mail_sifre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bolums">
+            <EntityTypeMapping TypeName="WebProjeDBModel.bolum">
+              <MappingFragment StoreEntitySet="bolum">
+                <ScalarProperty Name="bolum_id" ColumnName="bolum_id" />
+                <ScalarProperty Name="bolum_ad" ColumnName="bolum_ad" />
+                <ScalarProperty Name="bolum_kisa" ColumnName="bolum_kisa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kullanicis">
+            <EntityTypeMapping TypeName="WebProjeDBModel.kullanici">
+              <MappingFragment StoreEntitySet="kullanici">
+                <ScalarProperty Name="kul_id" ColumnName="kul_id" />
+                <ScalarProperty Name="kul_isim" ColumnName="kul_isim" />
+                <ScalarProperty Name="kul_mail" ColumnName="kul_mail" />
+                <ScalarProperty Name="kul_sifre" ColumnName="kul_sifre" />
+                <ScalarProperty Name="kul_telefon" ColumnName="kul_telefon" />
+                <ScalarProperty Name="kul_yetki" ColumnName="kul_yetki" />
+                <ScalarProperty Name="kul_Code" ColumnName="kul_Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ogrencis">
+            <EntityTypeMapping TypeName="WebProjeDBModel.ogrenci">
+              <MappingFragment StoreEntitySet="ogrenci">
+                <ScalarProperty Name="ogr_id" ColumnName="ogr_id" />
+                <ScalarProperty Name="ogr_isim" ColumnName="ogr_isim" />
+                <ScalarProperty Name="ogr_kul" ColumnName="ogr_kul" />
+                <ScalarProperty Name="ogr_sifre" ColumnName="ogr_sifre" />
+                <ScalarProperty Name="ogr_mail" ColumnName="ogr_mail" />
+                <ScalarProperty Name="ogr_yetki" ColumnName="ogr_yetki" />
+                <ScalarProperty Name="ogr_yil" ColumnName="ogr_yil" />
+                <ScalarProperty Name="ogr_arsiv" ColumnName="ogr_arsiv" />
+                <ScalarProperty Name="ogr_alt" ColumnName="ogr_alt" />
+                <ScalarProperty Name="ogr_code" ColumnName="ogr_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ogrproes">
+            <EntityTypeMapping TypeName="WebProjeDBModel.ogrpro">
+              <MappingFragment StoreEntitySet="ogrpro">
+                <ScalarProperty Name="ogrpro_id" ColumnName="ogrpro_id" />
+                <ScalarProperty Name="ogrpro_ogr" ColumnName="ogrpro_ogr" />
+                <ScalarProperty Name="ogrpro_proje" ColumnName="ogrpro_proje" />
+                <ScalarProperty Name="ogrpro_bolum" ColumnName="ogrpro_bolum" />
+                <ScalarProperty Name="ogrpro_tur" ColumnName="ogrpro_tur" />
+                <ScalarProperty Name="ogrpro_data" ColumnName="ogrpro_data" />
+                <ScalarProperty Name="ogrpro_resim" ColumnName="ogrpro_resim" />
+                <ScalarProperty Name="ogrpro_arsiv" ColumnName="ogrpro_arsiv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="projes">
+            <EntityTypeMapping TypeName="WebProjeDBModel.proje">
+              <MappingFragment StoreEntitySet="proje">
+                <ScalarProperty Name="proje_id" ColumnName="proje_id" />
+                <ScalarProperty Name="proje_isim" ColumnName="proje_isim" />
+                <ScalarProperty Name="proje_bolum" ColumnName="proje_bolum" />
+                <ScalarProperty Name="proje_tur" ColumnName="proje_tur" />
+                <ScalarProperty Name="proje_sayi" ColumnName="proje_sayi" />
+                <ScalarProperty Name="proje_yil" ColumnName="proje_yil" />
+                <ScalarProperty Name="proje_mail" ColumnName="proje_mail" />
+                <ScalarProperty Name="proje_data" ColumnName="proje_data" />
+                <ScalarProperty Name="proje_ata" ColumnName="proje_ata" />
+                <ScalarProperty Name="proje_resim" ColumnName="proje_resim" />
+                <ScalarProperty Name="proje_detay" ColumnName="proje_detay" />
+                <ScalarProperty Name="proje_arsiv" ColumnName="proje_arsiv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="turs">
+            <EntityTypeMapping TypeName="WebProjeDBModel.tur">
+              <MappingFragment StoreEntitySet="tur">
+                <ScalarProperty Name="tur_id" ColumnName="tur_id" />
+                <ScalarProperty Name="tur_ad" ColumnName="tur_ad" />
+                <ScalarProperty Name="tur_kisa" ColumnName="tur_kisa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

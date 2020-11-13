@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ProjeTakip.Models.kullanici>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.kul_isim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.kul_mail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.kul_sifre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.kul_telefon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.kul_yetki)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.kul_isim)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.kul_mail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.kul_sifre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.kul_telefon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.kul_yetki)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.kul_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.kul_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.kul_id })
+        </td>
+    </tr>
+}
+
+</table>

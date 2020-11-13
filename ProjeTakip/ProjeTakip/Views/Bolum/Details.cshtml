@@ -1,0 +1,32 @@
+﻿@model ProjeTakip.Models.bolum
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.bolum_ad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bolum_ad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bolum_kisa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bolum_kisa)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.bolum_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
