@@ -7,6 +7,7 @@ Asp.NET MVC ve SQL Server'ı EF6 ile bağlayarak kullandığım, Asp Net'in  Aut
   <img src="ProjeTakip/Screenshot/2.png" >
 
 </p>
+
 # 
 <p align="center">
   
@@ -14,6 +15,7 @@ Asp.NET MVC ve SQL Server'ı EF6 ile bağlayarak kullandığım, Asp Net'in  Aut
   <img src="ProjeTakip/Screenshot/4.png" >
 
 </p>
+
 # 
 <p align="center">
   
